@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ZYGAL Assignment -Dec 22</title>
+</head>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    #container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #topBlocks,
+    #bottomBlocks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #firstBlock,
+    #secondBlock,
+    #thirdBlock,
+    #fourthBlock {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    #firstBlock {
+        background-color: red;
+    }
+
+    #secondBlock {
+        background-color: yellow;
+    }
+
+    #thirdBlock {
+        background-color: orange;
+    }
+
+    #fourthBlock {
+        background-color: green;
+    }
+
+    #buttons button {
+        padding: 3rem 0rem;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="topBlocks">
+            <div id="firstBlock">
+                <p class="number">1</p>
+            </div>
+            <div id="secondBlock">
+                <p class="number">2</p>
+            </div>
+        </div>
+
+        <div id="buttons">
+            <button id="btn1">Anti-clockwise</button>
+            <button id="btn2">Clockwise</button>
+        </div>
+
+        <div id="bottomBlocks">
+            <div id="thirdBlock">
+                <p class="number">3</p>
+            </div>
+            <div id="fourthBlock">
+                <p class="number">4</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var bgColor1, bgColor2, bgColor3, bgColor4;
+        var c1, c2, c3, c4;
+
+        //get First Block 
+        var block1 = document.getElementById("firstBlock");
+
+        //get Second Block 
+        var block2 = document.getElementById("secondBlock");
+
+        //get Third Block 
+        var block3 = document.getElementById("thirdBlock");
+
+        //get Forth Block 
+        var block4 = document.getElementById("fourthBlock");
+
+        //get Buttons
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+
+        //get the colors
+        gettingColors = () => {
+            bgColor1 = window.getComputedStyle(block1).getPropertyValue("background-color");
+            bgColor2 = window.getComputedStyle(block2).getPropertyValue("background-color");
+            bgColor3 = window.getComputedStyle(block3).getPropertyValue("background-color");
+            bgColor4 = window.getComputedStyle(block4).getPropertyValue("background-color");
+        }
+
+
+        antiClockwiseColors = (c1, c2, c3, c4) => {
+            block2.style.backgroundColor = c1;
+            block3.style.backgroundColor = c2;
+            block4.style.backgroundColor = c3;
+            block1.style.backgroundColor = c4;
+
+        }
+
+
+        clockwiseColors = (c1, c2, c3, c4) => {
+            block2.style.backgroundColor = c3;
+            block3.style.backgroundColor = c4;
+            block4.style.backgroundColor = c1;
+            block1.style.backgroundColor = c2;
+        }
+
+
+        //for anticlockwise
+        btn1.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            gettingColors();
+
+            c1 = bgColor1;
+            c2 = bgColor2;
+            c3 = bgColor3;
+            c4 = bgColor4;
+
+            antiClockwiseColors(c1, c2, c3, c4);
+        });
+
+        //for clockwise
+        btn2.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            gettingColors();
+
+            c1 = bgColor1;
+            c2 = bgColor2;
+            c3 = bgColor3;
+            c4 = bgColor4;
+
+            clockwiseColors(c1, c2, c3, c4);
+        });
+    </script>
+</body>
+
+</html>
